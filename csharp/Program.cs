@@ -55,7 +55,28 @@ Employee.PromoteEmployee(employeesList, emp => emp.Experience >= 5);
 // {
 //     return emp.Experience >= 5;
 // }
+Console.WriteLine("-------------------------------------");
+SampleDelegate del = new SampleDelegate(MulticastDelegates.SampleMethodOne);
+del();
+SampleDelegate del1, del2, del3, del4;
+del1 = new SampleDelegate(MulticastDelegates.SampleMethodOne);
+del2 = new SampleDelegate(MulticastDelegates.SampleMethodTwo);
+del3 = new SampleDelegate(MulticastDelegates.SampleMethodThree);
+del4 = del2 + del1; //multicast delegate
+del4 += del3;
+del4();
+del4 -= del1;
+del4();
 
+SampleDelegate del5 = new SampleDelegate(MulticastDelegates.SampleMethodOne);
+del5 += MulticastDelegates.SampleMethodThree;
+del5 += MulticastDelegates.SampleMethodTwo;
+del5();
+
+ReturningDelegate rdel = new ReturningDelegate(MulticastDelegates.ReturningMethodOne);
+ReturningDelegate rdel1 = new ReturningDelegate(MulticastDelegates.ReturningMethodTwo);
+rdel += rdel1;
+Console.WriteLine(rdel());
 internal enum ResourceType
 {
     stone,
